@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Smart Tile Calculator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Smart Tile Calculator</h1>
+<br><br>
+    <div class="input-group">
+      <label for="calcType">Select Tile Type:</label>
+      <select id="calcType" onchange="toggleTileOptions()">
+        <option value="floor">Floor Tiles</option>
+        <option value="wall">Wall Tiles</option>
+      </select>
+    </div>
+
+    <div class="input-group">
+      <label for="areaWidth">Area Width (ft):</label>
+      <input type="number" id="areaWidth" step="0.01" required>
+    </div>
+
+    <div class="input-group">
+      <label for="areaHeight">Area Height (ft):</label>
+      <input type="number" id="areaHeight" step="0.01" required>
+    </div>
+
+    <div class="input-group" id="floorTileGroup">
+      <label for="floorTileSize">Select Floor Tile Size:</label>
+      <select id="floorTileSize">
+        <option value="1x1">1 ft x 1 ft (12" x 12")</option>
+        <option value="1.3x1.3">1.3 ft x 1.3 ft (15.6" x 15.6")</option>
+        <option value="2x2">2 ft x 2 ft (24" x 24")</option>
+        <option value="4x2">4 ft x 2 ft (48" x 24")</option>
+        <option value="5.6x2.9">5.6 ft x 2.9 ft (67.2" x 34.8")</option>
+      </select>
+    </div>
+
+    <div class="input-group" id="wallTileGroup" style="display: none;">
+      <label for="wallTileSize">Select Wall Tile Size:</label>
+      <select id="wallTileSize">
+        <option value="1.25x0.83">15" x 10" (1.25 ft x 0.83 ft)</option>
+        <option value="1.5x1">18" x 12" (1.5 ft x 1.0 ft)</option>
+        <option value="2x1">24" x 12" (2.0 ft x 1.0 ft)</option>
+      </select>
+    </div>
+
+    <div class="input-group">
+      <label>Number of Dark Tile Rows:</label>
+      <input type="number" id="darkRows" placeholder="Eg: 2">
+    </div>
+
+    <div class="input-group">
+      <label>Number of Highlight Tile Rows:</label>
+      <input type="number" id="highlightRows" placeholder="Eg: 1">
+    </div>
+
+    <div class="input-group">
+      <label>Number of Light Tile Rows:</label>
+      <input type="number" id="lightRows" placeholder="leave blank to auto-calculate">
+    </div>
+
+    <button onclick="calculateTiles()">Calculate</button>
+    <button onclick="showVisualLayout()">Tile Calculation</button>
+
+    <div class="output" id="output"></div>
+    <div class="output" id="visualOutput" style="display: none;"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

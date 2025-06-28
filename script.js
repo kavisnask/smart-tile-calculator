@@ -1,15 +1,30 @@
-// script.js
 let layoutData = {};
 
+// Pieces per box mapping
 const tileBoxData = {
-  "1.25x0.83": 8,
-  "1.5x1": 6,
+  "1.25x0.83": 8,   // 15x10
+  "1.5x1": 6,       // 18x12
   "2x1": 5,
   "1x1": 8,
   "1.3x1.3": 8,
   "2x2": 4,
   "4x2": 2,
-  "5.6x2.9": 2
+  "5.6x2.9": 2,
+  "2.75x5.25": 2,
+  "6x4": 2
+};
+
+// Weight per box mapping (in kg)
+const tileBoxWeight = {
+  "1.25x0.83": 9,      // 15" x 10"
+  "1.5x1": 10.5,       // 18" x 12"
+  "2x1": 12.5,
+  "1x1": 12.5,
+  "1.3x1.3": 10,       // Matching floor
+  "2x2": 26,
+  "4x2": 26,
+  "2.75x5.25": 52,
+  "6x4": 92
 };
 
 function toggleTileOptions() {
@@ -94,14 +109,19 @@ function showVisualLayout() {
   const lightTiles = tilesAlongWidth * lightRows;
   const totalTiles = darkTiles + highlightTiles + lightTiles;
   const tileArea = tileW * tileH;
-  const totalLayoutArea = totalTiles * tileArea;
 
   const tilesPerBox = tileBoxData[tileKey] || 1;
+  const weightPerBox = tileBoxWeight[tileKey] || 0;
+
   const darkBoxes = Math.ceil(darkTiles / tilesPerBox);
   const highlightBoxes = Math.ceil(highlightTiles / tilesPerBox);
   const lightBoxes = Math.ceil(lightTiles / tilesPerBox);
   const totalBoxes = darkBoxes + highlightBoxes + lightBoxes;
+
+  const totalLayoutArea = totalBoxes * tilesPerBox * tileArea;
   const totalAmount = (totalLayoutArea * price).toFixed(2);
+
+  const totalWeight = totalBoxes * weightPerBox;
 
   document.getElementById('visualOutput').style.display = 'block';
   document.getElementById('visualOutput').innerHTML = `
@@ -115,5 +135,6 @@ function showVisualLayout() {
     <p><strong>Total Tile Area (based on layout):</strong> ${totalLayoutArea.toFixed(2)} sq.ft</p>
     <p><strong>Price per Sq.ft:</strong> ₹${price.toFixed(2)}</p>
     <p><strong>Total Amount:</strong> ₹${totalAmount}</p>
+    <p><strong>Total Weight:</strong> ${totalWeight.toFixed(2)} kg</p>
   `;
 }

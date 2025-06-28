@@ -125,7 +125,7 @@ function showVisualLayout() {
 
   document.getElementById('visualOutput').style.display = 'block';
   document.getElementById('visualOutput').innerHTML = `
-    <h4>Visual Tile Layout Plan</h4><br>
+    <h4>Visual Tile Layout Plan</h4>
     <p><strong>Dark Tile Rows:</strong> ${darkRows} → <strong>Tiles:</strong> ${darkTiles} → <strong>Boxes:</strong> ${darkBoxes}</p>
     <p><strong>Highlight Tile Rows:</strong> ${highlightRows} → <strong>Tiles:</strong> ${highlightTiles} → <strong>Boxes:</strong> ${highlightBoxes}</p>
     <p><strong>Light Tile Rows:</strong> ${lightRows} → <strong>Tiles:</strong> ${lightTiles} → <strong>Boxes:</strong> ${lightBoxes}</p>
